@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home</title>
+<style>
+:root { --phone-width: 420px; }
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  background:#ffb6d9;
+  font-family:sans-serif;
+  overflow:hidden;
+}
+/* Floating particles background */
+.float-container{
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index:1;
+}
+.float-piece{
+  position:absolute;
+  width:10px; height:10px;
+  border-radius:50%;
+  background:linear-gradient(45deg,#ff4fa5,#ffe156,#00d2ff,#ff7eb3);
+  opacity:0.8;
+  animation-name:floatAnim;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes floatAnim{
+  0%{transform:translateY(0) rotate(0deg);}
+  50%{transform:translateY(-30px) rotate(180deg);}
+  100%{transform:translateY(0) rotate(360deg);}
+}
+
+/* Phone container */
+.phone{
+  width:100%;
+  max-width:var(--phone-width);
+  height:700px;
+  border-radius:25px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 10px 40px rgba(0,0,0,0.2);
+  background:url('bg.jpg') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:2;
+}
+
+/* Click button */
+a.button{
+  display:inline-block;
+  padding:15px 30px;
+  background:#fff;
+  color:#ff4fa5;
+  font-weight:bold;
+  font-size:18px;
+  border-radius:30px;
+  text-decoration:none;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  z-index:2;
+  position:relative;
+  animation: pulse 2s infinite;
+}
+
+/* Hover animation */
+a.button:hover{
+  transform:scale(1.1);
+  background:#ffe6f0;
+  box-shadow:0 10px 25px rgba(255,79,165,0.7);
+}
+
+/* Button pulse effect */
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+  100%{transform:scale(1);}
+}
+</style>
+</head>
+<body>
+
+<div class="float-container" id="floatContainer"></div>
+
+<div class="phone">
+  <a href="gallery.html" class="button">Click Here</a>
+</div>
+
+<script>
+// Floating particles
+const floatContainer = document.getElementById('floatContainer');
+for(let i=0;i<40;i++){
+  const div = document.createElement('div');
+  div.classList.add('float-piece');
+  div.style.left = Math.random()*100+'%';
+  div.style.top = Math.random()*100+'%';
+  div.style.width = 5 + Math.random()*15+'px';
+  div.style.height = div.style.width;
+  div.style.animationDuration = 4 + Math.random()*4+'s';
+  floatContainer.appendChild(div);
+}
+</script>
+
+</body>
+</html>
+
+
